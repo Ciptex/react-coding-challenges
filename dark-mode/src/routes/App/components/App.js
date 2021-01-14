@@ -1,6 +1,6 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { StyledIconMoon, StyledIconSun } from "./partials/Icons.js";
 import '../styles/_app.scss';
 
 const Field = ({ placeholder }) => (
@@ -18,6 +18,8 @@ const Column = ({ children }) => (
 );
 
 function App() {
+  const [isDarkMode, setDarkMode] = useState(false);
+
   return (
     <div className="app">
       <div className="level">
@@ -27,7 +29,11 @@ function App() {
 
         {/* --The button that should toggle dark mode-- */}
         <button className="app__dark-mode-btn icon level-right">
-          <FontAwesomeIcon icon={faMoon} />
+          {isDarkMode ? (
+            <StyledIconMoon icon={faMoon} />
+          ) : (
+            <StyledIconSun icon={faSun} />
+          )}
         </button>
       </div>
 
