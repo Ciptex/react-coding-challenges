@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { StyledIconMoon, StyledIconSun } from "./partials/Icons.js";
 import '../styles/_app.scss';
@@ -17,8 +17,21 @@ const Column = ({ children }) => (
   </div>
 );
 
+const storedDarkModeState =
+  localStorage.getItem("isDarkMode") &&
+  JSON.parse(localStorage.getItem("isDarkMode"));
+
 function App() {
-  const [isDarkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(storedDarkModeState || false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark-mode", isDarkMode);
+  });
+
+  const toggleDarkMode = () => {
+    setDarkMode(!isDarkMode);
+    localStorage.setItem("isDarkMode", !isDarkMode);
+  };
 
   return (
     <div className="app">
@@ -28,7 +41,10 @@ function App() {
         </div>
 
         {/* --The button that should toggle dark mode-- */}
-        <button className="app__dark-mode-btn icon level-right">
+        <button
+          className="app__dark-mode-btn icon level-right"
+          onClick={toggleDarkMode}
+        >
           {isDarkMode ? (
             <StyledIconMoon icon={faMoon} />
           ) : (
