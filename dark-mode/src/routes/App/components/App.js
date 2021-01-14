@@ -31,6 +31,7 @@ function App() {
   const toggleDarkMode = () => {
     setDarkMode(!isDarkMode);
     localStorage.setItem("isDarkMode", !isDarkMode);
+    document.documentElement.classList.add("with-transitions");
   };
 
   return (

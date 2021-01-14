@@ -1,0 +1,18 @@
+@mixin animation($property) {
+  transition: $property 0.2s ease;
+}
+
+.with-transitions {
+  @include animation(background-color);
+
+  p, .title, .subtitle {
+    @include animation(color);
+  }
+
+  .is-primary,
+  .is-link,
+  input {
+    @include animation(background-color);
+    @include animation(color);
+  }
+}
