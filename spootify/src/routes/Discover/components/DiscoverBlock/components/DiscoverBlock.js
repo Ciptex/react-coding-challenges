@@ -19,24 +19,22 @@ export default function DiscoverBlock({ text, id, data, imagesKey = 'images' }) 
       <div className="discover-block__header">
         <h2>{text}</h2>
         <span />
-        {
-          data.length ? (
-            <div className="animate__animated animate__fadeIn">
-              <FontAwesomeIcon
-                icon={faChevronLeft}
-                onClick={scrollContainer(id, { isNegative: true })}
-              />
-              <FontAwesomeIcon
-                icon={faChevronRight}
-                onClick={scrollContainer(id)}
-              />
-            </div>
-          ) : null
-        }
+        {data.length ? (
+          <div className="animate__animated animate__fadeIn">
+            <FontAwesomeIcon
+              icon={faChevronLeft}
+              onClick={scrollContainer(id, { isNegative: true })}
+            />
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              onClick={scrollContainer(id)}
+            />
+          </div>
+        ) : null}
       </div>
       <div className="discover-block__row" id={id}>
-        {data.map(({ [imagesKey]: images, name }) => (
-          <DiscoverItem key={name} images={images} name={name} />
+        {data.map(({ [imagesKey]: images, name }, elemKey) => (
+          <DiscoverItem key={elemKey} images={images} name={name} />
         ))}
       </div>
     </div>
